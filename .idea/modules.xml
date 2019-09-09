@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/bug-common/bug-common.iml" filepath="$PROJECT_DIR$/bug-common/bug-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bug-provider/bug-provider.iml" filepath="$PROJECT_DIR$/bug-provider/bug-provider.iml" />
     </modules>
   </component>
 </project>
