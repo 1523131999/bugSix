@@ -5,6 +5,7 @@
       <list>
         <option value="$PROJECT_DIR$/bug-common/pom.xml" />
         <option value="$PROJECT_DIR$/bug-provider/pom.xml" />
+        <option value="$PROJECT_DIR$/bug-consumer/pom.xml" />
       </list>
     </option>
   </component>

@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="bug-common" />
+        <module name="bug-consumer" />
         <module name="bug-provider" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="bug-common" target="1.8" />
+      <module name="bug-consumer" target="1.8" />
       <module name="bug-provider" target="1.8" />
     </bytecodeTargetLevel>
   </component>
