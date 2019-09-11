@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tcmp.six.dao.YmyModelMapper">
+    <select id="detailByUserid" resultMap="map1" parameterType="integer">
+
+      select * from  Module,user where cassign=#{id} and Module.cassign=user.userid and Module.Kassign=user.userid
+    </select>
+    <resultMap id="map1" type="Module" autoMapping="true">
+        <id property="id" column="id"></id>
+        <collection property="cassign" resultMap="map2"></collection>
+        <collection property="Kassign" resultMap="map2"></collection>
+    </resultMap>
+    <resultMap id="map2" type="User" autoMapping="true">
+        <id column="userid" property="usereid"></id>
+    </resultMap>
+</mapper>

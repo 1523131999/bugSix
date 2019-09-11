@@ -14,7 +14,7 @@ public class Module implements Serializable {
     private Integer projectid;
     private String modeuleName;
     private String describe;
-    private Integer Kassign;
-    private Integer cassign;
+    private User Kassign;
+    private User cassign;
 
 }
