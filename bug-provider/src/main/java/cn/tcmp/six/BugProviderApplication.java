@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @MapperScan("cn.tcmp.six.dao")
 @SpringBootApplication
+@MapperScan("cn.tcmp.six.mapper")
 public class BugProviderApplication {
 
     public static void main(String[] args) {
