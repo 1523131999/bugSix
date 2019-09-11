@@ -1,4 +1,4 @@
-package cn.tcmp.six.mapper;
+package cn.tcmp.six.dao;
 
 import cn.tcmp.six.entity.Module;
 
