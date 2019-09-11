@@ -18,7 +18,7 @@ public class YmyModelController {
     }
     @RequestMapping("/")
     public  String toWelcome() {
-        return "welcome";
+        return "index";
     }
 
 }
