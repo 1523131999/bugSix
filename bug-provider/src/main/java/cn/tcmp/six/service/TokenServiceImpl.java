@@ -76,6 +76,7 @@ public class TokenServiceImpl implements TokenService {
         //1. 通过入参token查询Redis中是否有符合的记录
         Object userJson = redisUtil.get(token);
         if (null == userJson) {
+
             return false;
         }
 
