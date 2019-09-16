@@ -16,14 +16,14 @@ public class YmyModelServiceImpl implements  YmyModelService {
     private YmyModelMapper mapper;
     @Override
     public WyjPageUtils<Module> detialByUserid(Integer id,Integer pageNum,Integer pageNo) {
-        PageHelper.startPage(pageNum,pageNo);
+        PageHelper.startPage(pageNo,pageNum);
         List<Module> list=mapper.detailByUserid(id);
         PageInfo<Module> info=new PageInfo<>(list);
         WyjPageUtils<Module> util=new WyjPageUtils<>();
         util.setList(info.getList());
         util.setPageNo(info.getPageNum());
         util.setPageSize(info.getPageSize());
-
+        util.setTotalPageCount(info.getPages());
         return util;
     }
 }

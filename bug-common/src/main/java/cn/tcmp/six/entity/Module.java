@@ -17,4 +17,6 @@ public class Module implements Serializable {
     private User Kassign;
     private User cassign;
 
+    private Integer isagreen;
+
 }
