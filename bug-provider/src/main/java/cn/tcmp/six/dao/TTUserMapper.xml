@@ -8,4 +8,25 @@
         WHERE usercode=#{usercode}
         AND password=#{password}
     </select>
+    <select id="queryAll" resultType="User" parameterType="User">
+        SELECT * FROM user
+    </select>
+
+    <select id="detailByUserid" parameterType="userid" resultType="user">
+        SELECT * FROM user where userid= #{userid} ;
+    </select>
+
+    <delete id="delete" parameterType="userid">
+        DELETE FROM bugdb.user WHERE userid = #{userid} ;
+    </delete>
+
+    <insert id="add" parameterType="User">
+        insert into user values(default,#{usercode},#{password},#{username},#{userroels})
+    </insert>
+
+    <update id="revise" parameterType="userid">
+
+    </update>
+
+
 </mapper>
