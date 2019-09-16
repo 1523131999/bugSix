@@ -12,7 +12,7 @@ import java.util.Date;
 public class Task implements Serializable {
 
     private Integer id;
-    private Integer moduleid;
+    private Module moduleid;
     private Date Estimateddate;
     private Date enddate;
     private Integer priority;
