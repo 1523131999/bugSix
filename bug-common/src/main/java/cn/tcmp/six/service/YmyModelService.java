@@ -5,6 +5,6 @@ import cn.tcmp.six.util.WyjPageUtils;
 
 public interface  YmyModelService {
 
-    WyjPageUtils<Module> detialByUserid(Integer id,Integer pageNum,Integer pageNo);
+    WyjPageUtils<Module> detialByUserid(Integer id, Integer pageNum, Integer pageNo);
 
 }

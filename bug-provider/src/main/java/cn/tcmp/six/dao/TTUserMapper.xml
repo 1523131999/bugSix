@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.tcmp.dao.UserMapper">
+<mapper namespace="cn.tcmp.six.dao.TTUserMapper">
     <select id="login" resultType="User" parameterType="User">
         SELECT * FROM bugdb.user
         WHERE usercode=#{usercode}

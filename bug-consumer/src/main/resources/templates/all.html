@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/js/bootstrap.js"></script>
+    <script src="../js/jquery-2.1.4.min.js"></script>
+
+</head>
+<body>
+        <table class="table">
+            <tr>
+                <td>模块id</td>
+                <td>模块名称</td>
+                <td>项目id</td>
+                <td>简介</td>
+                <td>操作</td>
+
+            </tr>
+            <tr th:each="item:${util.list}">
+                <td th:text="${item.id}"></td>
+                <td th:text="${item.modeuleName}"></td>
+                <td th:text="${item.projectid}"></td>
+                <td th:text="${item.describe}"></td>
+                <td ><a href="#">同意指派</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">申请重新指派</a></td>
+            </tr>
+
+        </table>
+        <button name="jkl" th:no="1">首页</button>
+        <button name="jkl" th:no="${util.pageNo-1}">上一页</button>
+        <button name="jkl" th:no="${util.pageNo+1}">下一页</button>
+        <button name="jkl" th:no="${util.totalPageCount}">尾页</button>
+        <input type="hidden" id="fff" th:value="${util.totalPageCount}">
+        <input type="hidden" id="userid" th:value="${userid}">
+        <script type="text/javascript">
+
+            $(function () {
+                $("button[name='jkl']").click(function () {
+                    var pages = $("#fff").val();
+                    var pageno = $(this).attr("no");
+                    pages=parseInt(pages);
+                    pageno=parseInt(pageno);
+                    if (pageno <= 1) {
+                        pageno = 1;
+                    }
+                    if (pages <= pageno) {
+                        pageno=pages;
+                    }
+                    var id=$("#userid").val();
+                    id=parseInt(id);
+                    location.href = 'detailById?pageNo='+pageno+'&id='+id;
+                })
+            })
+        </script>
+</body>
+</html>
