@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="/js/css/bootstrap.css">
+    <script src="/js/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../js/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../js/layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+<hr/>
+<div class="container-fluid">
+
+    <p>
+        <span style="font-size: 18px;color: #CCCCCC">2019-09-16</span>
+        <span style="font-size: 22px;">今日工作剩余</span>
+        </p>
+        <br>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-3">
+            <span style="font-size: 22px">我的任务</span>
+        </div>
+        <div class="col-md-2 ">
+            <span style="font-size: 22px">我的bug</span>
+        </div>
+        <div class="col-md-2">
+            <span style="font-size: 22px">我的需求</span>
+        </div>
+    </div>
+    </br>
+    <div class="row" >
+        <div class="col-md-2 col-md-offset-3">
+            <span style="font-size: 22px">
+                <span style="padding-left: 33px">20</span>
+            </span>
+        </div>
+        <div class="col-md-2 ">
+            <span style="font-size: 22px">
+                <span style="padding-left: 33px">20</span>
+            </span>
+        </div>
+        <div class="col-md-2">
+             <span style="font-size: 22px">
+                <span style="padding-left: 33px">20</span>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-3">
+            <div style="width:90px;height: 22px;background-color:#e7c3c3;color: red;text-indent: 1em">
+                已延期:<span>12</span>
+            </div>
+        </div>
+    </div>
+    <div >
+        折线图
+    </div>
+    <div name="">
+        饼图
+    </div>
+</div>
+
+
+
+<script src="../js/layuiadmin/layui/layui.js?t=1"></script>
+<script>
+    layui.config({
+        base: '../js/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'console']);
+</script>
+</body>
+</html>
