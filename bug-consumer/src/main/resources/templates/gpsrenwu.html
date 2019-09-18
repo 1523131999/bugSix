@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>任务</title>
     <script src="../js/jquery-2.1.4.min.js"></script>
     <link rel="stylesheet" href="/js/css/bootstrap.css">
     <script src="/js/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../js/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../js/layuiadmin/style/admin.css" media="all">
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2 col-md-offset-10">
+    <div class="row" style="margin-bottom: 5px;margin-top: 5px">
+        <div class="col-md-2 col-md-offset-10" align="right">
             <button class="btn btn-success" style=""><span class="glyphicon glyphicon-plus"></span>增加任务</button>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-12">
             <table class="table table-striped table-bordered">
-                <tr>
+                <tr align="center">
                     <td>ID</td>
-                    <td>P</td>
+                    <td>P(优先级)</td>
                     <td>任务名称</td>
                     <td>所属项目/模块</td>
                     <td>状态</td>
@@ -29,17 +32,26 @@
                     <td>截止时间</td>
                     <td>操作</td>
                 </tr>
-                <tr>
-                    <td>12</td>
-                    <td>3</td>
-                    <td>增加新成员</td>
-                    <td>快狗/用户</td>
-                    <td>未开启</td>
-                    <td>李峰</td>
-                    <td></td>
-                    <td>2019-06-16</td>
-                    <td>2019-06-17</td>
-                    <td>操作</td>
+                <tr th:each="list:${list}" th:object="${list}" align="center">
+                    <td th:text="*{id}">12</td>
+                    <td th:if="*{priority} eq 1" ><span class="layui-badge layui-bg-blue">1</span></td>
+                    <td th:if="*{priority} eq 2" ><span class="layui-badge layui-bg-blue">2</span></td>
+                    <td th:if="*{priority} eq 3" ><span class="layui-badge layui-bg-blue">3</span></td>
+
+                    <td th:text="*{taskName}">12</td>
+                    <td th:text="*{moduleid.projectid.projectName}"></td>
+                    <td th:if="*{isEnd} eq 0">未完成</td>
+                    <td th:if="*{isEnd} eq 1">已完成</td>
+                    <td th:if="*{isEnd} eq 2">bug</td>
+                    <td th:text="s"></td>
+                    <td th:text="s"></td>
+                    <td th:text="*{#dates.format(Estimateddate,'yyyy-MM-dd')}"></td>
+                    <td th:text="*{#dates.format(enddate,'yyyy-MM-dd')}"></td>
+                    <td>
+                        <span class="glyphicon glyphicon-upload" id="upload"></span>
+                        <span class="glyphicon glyphicon-edit" id="edit"></span>
+                        <span class="glyphicon glyphicon-trash" id="delete"></span>
+                    </td>
                 </tr>
             </table>
         </div>

@@ -9,6 +9,8 @@
     <script src="/js/js/bootstrap.js"></script>
     <link rel="stylesheet" href="../js/layuiadmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="../js/layuiadmin/style/admin.css" media="all">
+    <script src="../js/echarts.min.js"></script>
+
 </head>
 <body>
 <hr/>
@@ -55,14 +57,83 @@
             </div>
         </div>
     </div>
-    <div >
-        折线图
-    </div>
-    <div name="">
-        饼图
+    <br>
+    <hr>
+    <div class="row">
+        <div  class="col-md-12">
+            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+            <div id="main" style="width: 99%;height: 600px"></div>
+        </div>
     </div>
 </div>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('main'),'light');
 
+    setTimeout(function () {
+        option = {
+            legend: {},
+            tooltip: {
+                trigger: 'axis',
+                showContent: false
+            },
+            dataset: {
+                source: [
+                    ['任务对比', '09-16', '09-17', '09-18', '09-19', '09-20', '09-21'],
+                    ['今日任务完成量', 12, 18, 21, 32, 21, 22],
+                    ['今日剩余任务量', 2, 3, 1, 5, 2, 1],
+                    ['今日bug量', 5, 7, 2, 8, 12,2],
+                    ['今日解决量', 5, 7, 2, 7, 9, 2]
+                ]
+            },
+            xAxis: {type: 'category'},
+            yAxis: {gridIndex: 0},
+            grid: {top: '55%'},
+            series: [
+                {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                {
+                    type: 'pie',
+                    id: 'pie',
+                    radius: '30%',
+                    center: ['50%', '25%'],
+                    label: {
+                        formatter: '{b}: {@2012} ({d}%)'
+                    },
+                    encode: {
+                        itemName: '任务对比',
+                        value: '09-16',
+                        tooltip: '09-16'
+                    }
+                }
+            ]
+        };
+
+        myChart.on('updateAxisPointer', function (event) {
+            var xAxisInfo = event.axesInfo[0];
+            if (xAxisInfo) {
+                var dimension = xAxisInfo.value + 1;
+                myChart.setOption({
+                    series: {
+                        id: 'pie',
+                        label: {
+                            formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+                        },
+                        encode: {
+                            value: dimension,
+                            tooltip: dimension
+                        },
+
+                    }
+                });
+            }
+        });
+
+        myChart.setOption(option);
+
+    });
+</script>
 
 
 <script src="../js/layuiadmin/layui/layui.js?t=1"></script>

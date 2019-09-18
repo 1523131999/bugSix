@@ -12,11 +12,11 @@
         SELECT * FROM user
     </select>
 
-    <select id="detailByUserid" parameterType="userid" resultType="user">
+    <select id="detailByUserid" parameterType="Integer" resultType="User">
         SELECT * FROM user where userid= #{userid} ;
     </select>
 
-    <delete id="delete" parameterType="userid">
+    <delete id="delete" parameterType="Integer">
         DELETE FROM bugdb.user WHERE userid = #{userid} ;
     </delete>
 
@@ -24,7 +24,7 @@
         insert into user values(default,#{usercode},#{password},#{username},#{userroels})
     </insert>
 
-    <update id="revise" parameterType="userid">
+    <update id="revise" parameterType="Integer">
 
     </update>
 

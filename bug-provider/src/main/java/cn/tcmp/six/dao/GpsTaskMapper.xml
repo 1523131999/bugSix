@@ -11,7 +11,7 @@
     </select>
     <resultMap id="tMap" type="Task" autoMapping="true">
         <id column="id" property="id"/>
-         <collection property="modileid" resultMap="mMap"></collection>
+         <collection property="moduleid" resultMap="mMap"></collection>
     </resultMap>
     <resultMap id="mMap" type="Module" autoMapping="true">
         <id column="id" property="id"/>
