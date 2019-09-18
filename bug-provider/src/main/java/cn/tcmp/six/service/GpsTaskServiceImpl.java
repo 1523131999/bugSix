@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import java.util.List;
-@com.alibaba.dubbo.config.annotation.Service
+
 public class GpsTaskServiceImpl implements GpsTaskService  {
 
 
