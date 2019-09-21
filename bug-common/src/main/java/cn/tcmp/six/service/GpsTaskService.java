@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface GpsTaskService {
 
-    List<Task> queryAllTask();
+    List<Task> queryAllTask(Integer assign);
 
 }

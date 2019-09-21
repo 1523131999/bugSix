@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>查询用户</title>
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/js/bootstrap.js"></script>
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="../js/css/bootstrap.css">
+</head>
+<body>
+<form action="/user/queryAll">
+    <table class="table">
+        <tr>
+            <td>用户Id</td>
+            <td>用户账号</td>
+            <td>用户名</td>
+            <td>用户角色</td>
+        </tr>
+        <tr th:each="item:${util.list}">
+            <td th:text="${item.userid}"></td>
+            <td th:text="${item.usercode}"></td>
+            <td th:text="${item.username}"></td>
+            <td th:text="${item.userroels}"></td>
+        </tr>
+
+    </table>
+    <button name="jkl" th:no="1">首页</button>
+    <button name="jkl" th:no="${util.pageNo-1}">上一页</button>
+    <button name="jkl" th:no="${util.pageNo+1}">下一页</button>
+    <button name="jkl" th:no="${util.totalPageCount}">尾页</button>
+    <input type="hidden" id="fff" th:value="${util.totalPageCount}">
+    <input type="hidden" id="userid" th:value="${userid}">
+</form>
+</body>
+</html>

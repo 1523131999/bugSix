@@ -10,6 +10,7 @@ import cn.tcmp.six.util.Common;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -81,5 +82,45 @@ public class TtUserController {
         return "index";
     }
 
+
+    @RequestMapping("detailById")
+    public String detail(Integer id, Integer pageNum, Integer pageNo, User user, Model model) {
+        if (pageNo == null) {
+            pageNo=1;
+        }
+        if (pageNum == null) {
+            pageNum=3;
+        }
+
+        model.addAttribute("util",userService.detailByUserid(id,pageNum,pageNo));
+        model.addAttribute("userid",id);
+        return  "list_user";
+    }
+
+    @RequestMapping("queryAll")
+    public String queryAll(Integer pageNum, Integer pageNo, User user,Model model){
+        if (pageNo == null) {
+            pageNo=1;
+        }
+        if (pageNum == null) {
+            pageNum=3;
+        }
+
+        model.addAttribute("util",userService.queryAll(user,pageNum,pageNo));
+        model.addAttribute("user",user);
+        return "list_user";
+    }
+
+    @RequestMapping("add")
+    public String add(User user,Model model){
+        Integer add = userService.add(user);
+        return "add_user";
+    }
+
+    @RequestMapping("detele")
+    public String detele(Integer id,Model model){
+        Integer add = userService.delete(id);
+        return "list_user";
+    }
 }
 

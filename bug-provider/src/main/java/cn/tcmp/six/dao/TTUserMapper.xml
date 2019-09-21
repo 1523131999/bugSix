@@ -24,9 +24,7 @@
         insert into user values(default,#{usercode},#{password},#{username},#{userroels})
     </insert>
 
-    <update id="revise" parameterType="Integer">
 
-    </update>
 
 
 </mapper>

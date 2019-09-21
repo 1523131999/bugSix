@@ -16,8 +16,6 @@ public interface TTUserMapper {
         List<User> detailByUserid(Integer id);
     //新增用户
         Integer add(User user);
-    //修改用户
-        Integer revise(Integer id);
     //删除用户
         Integer delete(Integer id);
 
