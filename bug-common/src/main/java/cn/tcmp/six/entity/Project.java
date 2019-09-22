@@ -19,4 +19,5 @@ public class Project implements Serializable {
     private String teamName;
     private String projecttype;
     private String describe;
+    private Integer isstate;
 }
