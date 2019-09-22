@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tcmp.six.dao.WyjProjectMapper">
+
+
+    <select id="queryAllProjectName"  resultType="Project" >
+      SELECT * FROM project
+    ORDER BY projectName DESC
+        </select>
+
+    <select id="queryAllProjectid" resultMap="tMap" parameterType="Integer">
+
+       SELECT * FROM `task` t ,`module` m,`project` p
+            WHERE t.`moduleid`=m.`id`
+            AND m.`projectid`=p.`id`
+            AND m.`projectid`=#{projectid}
+
+    </select>
+    <!-- 进行中的项目展示-->
+    <select id="queryAllProjectState" resultType="Project" >
+        SELECT * FROM project
+    </select>
+
+    <resultMap id="ProMap" type="Project" autoMapping="true">
+        <id column="id" property="id"/>
+        <collection property="stateid" resultMap="stMap"></collection>
+    </resultMap>
+    <resultMap id="stMap" type="State" autoMapping="true">
+        <id column="id" property="id"/>
+    </resultMap>
+
+    <!-- 任务列表-->
+    <select id="queryAllTask" resultMap="tMap" parameterType="Integer">
+            SELECT * FROM `task` t ,`module` m,`project` p
+            WHERE t.`moduleid`=m.`id`
+            AND m.`projectid`=p.`id`
+            AND t.`assign`=#{assign}
+    </select>
+    <resultMap id="tMap" type="Task" autoMapping="true">
+        <id column="id" property="id"/>
+        <collection property="moduleid" resultMap="mMap"></collection>
+    </resultMap>
+    <resultMap id="mMap" type="Module" autoMapping="true">
+        <id column="id" property="id"/>
+        <collection property="projectid" resultMap="pMap"/>
+    </resultMap>
+    <resultMap id="pMap" type="Project" autoMapping="true">
+        <id column="id" property="id"/>
+    </resultMap>
+
+
+</mapper>
