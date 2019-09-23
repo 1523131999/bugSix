@@ -46,6 +46,30 @@ public class WyjProjectServiceImpl implements WyjProjectService {
         return util;
     }
 
+    @Override
+    public Integer queryAllCount(Integer id) {
+        return wyjProjectMapper.queryAllCount(id);
+    }
+
+    @Override
+    public Integer saveProject(Project project) {
+        return wyjProjectMapper.saveProject(project);
+    }
+
+    @Override
+    public Integer updateTask(Task task) {
+        return wyjProjectMapper.updateTask(task);
+    }
+
+    @Override
+    public Task queryTaskById(Integer id) {
+        return wyjProjectMapper.queryTaskById(id);
+    }
+
+    @Override
+    public Integer deleteTask(Integer id) {
+        return wyjProjectMapper.deleteTask(id);
+    }
 
 
 }

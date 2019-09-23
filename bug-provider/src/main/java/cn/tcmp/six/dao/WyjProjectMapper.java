@@ -3,6 +3,8 @@ package cn.tcmp.six.dao;
 import cn.tcmp.six.entity.Project;
 import cn.tcmp.six.entity.State;
 import cn.tcmp.six.entity.Task;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
 
 
 import java.util.List;
@@ -16,5 +18,17 @@ public interface WyjProjectMapper {
     List<Project> queryAllProjectState(Integer isstate);
     //任务列表
     List<Task> queryAllTask(Integer assign);
+    //项目总数
+    @Select(" SELECT COUNT(*)  FROM project")
+    Integer queryAllCount(Integer id);
+    //添加项目(项目)
+    Integer saveProject(Project project);
+    //编辑任务(更新相关)
+    Integer updateTask(Task task);
+    //按id查询查询task
+    @Select("SELECT * FROM task WHERE id=#{id}")
+    Task queryTaskById(Integer id);
+    //删除任务
+    Integer deleteTask(Integer id);
 
 }

@@ -49,6 +49,24 @@
     <resultMap id="pMap" type="Project" autoMapping="true">
         <id column="id" property="id"/>
     </resultMap>
-
-
+    <!--添加saveProject-->
+    <insert id="saveProject" parameterType="Project">
+        INSERT INTO `bugdb`.`project` VALUES
+        (NULL,#{projectName},#{projectCode},#{stardate},#{enddate},
+        #{teamName},#{projecttype},#{describe},#{isstate})
+    </insert>
+    <!--添加updateTask(备注)-->
+    <update id="updateTask" parameterType="Task">
+         UPDATE
+      `bugdb`.`task`
+        SET
+        taskName=#{taskName},
+        isEnd=#{isEnd},
+    `taskDescribe` = #{taskDescribe},
+    `remarks` = #{remarks}
+            WHERE `id` = #{id};
+    </update>
+    <delete id="deleteTask" parameterType="Integer">
+      delete from  project where id=#{id}
+    </delete>
 </mapper>
