@@ -26,4 +26,75 @@ public class YmyModelServiceImpl implements  YmyModelService {
         util.setTotalPageCount(info.getPages());
         return util;
     }
+
+    @Override
+    public Integer agree(Integer id) {
+        return mapper.agree(id);
+    }
+
+    @Override
+    public Integer Shenqing(Integer id) {
+        return mapper.Shenqing(id);
+    }
+
+    @Override
+    public WyjPageUtils<Task> queryTask(Integer id, Integer pageSize, Integer pageNo) {
+        PageHelper.startPage(pageNo,pageSize);
+        List<Task> list=mapper.detailByModulId(id);
+        PageInfo info=new PageInfo(list);
+        WyjPageUtils<Task> util=new WyjPageUtils<>();
+        util.setTotalPageCount(info.getPages());
+        util.setPageSize(info.getPageSize());
+        util.setPageNo(info.getPageNum());
+        util.setList(info.getList());
+
+        return util;
+    }
+
+    @Override
+    public List<Module> queryAllModule(Integer id) {
+        return mapper.detailByUserid(id);
+    }
+
+    @Override
+    public Integer updateTask(Integer id) {
+        return mapper.updateTask(id);
+    }
+
+    @Override
+    public Integer addBug(Bug bug) {
+        return mapper.addBug(bug);
+    }
+
+    @Override
+    public WyjPageUtils<Bug> queryBug(Integer userid, Integer pageNo, Integer pageSize) {
+        PageHelper.startPage(pageNo,pageSize);
+        List<Bug> list=mapper.queryBug(userid);
+        PageInfo<Bug> info=new PageInfo<>(list);
+        WyjPageUtils<Bug> util=new WyjPageUtils<>();
+        util.setList(info.getList());
+        util.setPageNo(info.getPageNum());
+        util.setPageSize(info.getPageSize());
+        util.setTotalPageCount(info.getPages());
+
+
+        return util;
+    }
+
+    @Override
+    public Integer updateBugOk(Integer id) {
+        return mapper.updateBugOk(id);
+    }
+
+    @Override
+    public Integer updateBugNo(Integer id) {
+        return mapper.updateBugNo(id);
+    }
+
+    @Override
+    public Integer updatetask(Integer id) {
+        return mapper.updateTask(id);
+    }
+
+
 }
