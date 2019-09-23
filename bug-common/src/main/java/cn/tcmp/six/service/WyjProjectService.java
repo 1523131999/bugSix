@@ -17,7 +17,14 @@ public interface WyjProjectService {
     List<Project> queryAllProjectState(Integer isstate);
     //任务列表
     WyjPageUtils<Task> queryAllTask(Integer assign,Integer pageNum, Integer pageNo);
-
-
-
+    //项目总数
+    Integer queryAllCount(Integer id);
+    //添加项目(项目)
+    Integer saveProject(Project project);
+    //编辑任务(更新相关,状态)
+    Integer updateTask(Task task);
+    //按id查询查询task
+    Task queryTaskById(Integer id);
+    //删除任务
+    Integer deleteTask(Integer id);
 }

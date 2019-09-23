@@ -20,5 +20,6 @@ public class Task implements Serializable {
     private User createUser;
     private Integer isEnd;
     private String taskName;
-
+    private String taskDescribe;
+    private String remarks;
 }
