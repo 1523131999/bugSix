@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑任务</title>
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="/js/css/bootstrap.css">
+    <script src="/js/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../js/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../js/layuiadmin/style/admin.css" media="all">
+    <script type="text/javascript">
+        $(function () {
+            $("input[type='button']").click(function () {
+                //获取表单数据
+                var data=$("#saveForm").serialize();
+               // alert(data);
+                //ajax请求
+                $.post("/project/updateTaskR",data,function (result) {
+
+                    if(result=='ok'){
+                        alert("修改成功!");
+                        //大列表页面
+                        location.href="/project/toRenWuAll";
+                    }else{
+                        alert("请联系管理员");
+                    }
+
+                })
+
+            })
+        })
+    </script>
+</head>
+<body>
+
+<div align="center" style="width: 1000px;height:auto;margin-top: 30px;">
+    <br/>
+    <div align="left" style="margin-left: 60px;background-color:whitesmoke; width: 1700px">
+        <h3>编辑任务</h3>
+    </div>
+    <br/>
+    <div align="center" style="margin-left: 90px">
+        <form class="form-horizontal" id="saveForm">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">任务名称</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="inputEmail3" placeholder="任务名称" name="taskName" th:value="${list.taskName}">
+                  <input type="hidden" name="id" th:value="${list.id}">
+                </div>
+            </div>
+
+            <div th:switch="${list.isEnd}" class="form-group">
+                <label for="inputPassword89" class="col-sm-2 control-label">项目状态</label>
+                <div class="col-sm-5">
+                <span th:case="0">
+                <select name="isEnd" class="form-control" id="inputPassword89">
+                    <option value="0" th:selected="${list.isEnd==0}">未开始</option>
+                    <option value="1" th:selected="${list.isEnd==1}">已开始</option>
+                    <option value="2" th:selected="${list.isEnd==2}">进行中</option>
+                    <option value="3" th:selected="${list.isEnd==3}">已续期</option>
+                    <option value="4" th:selected="${list.isEnd==4}">已关闭</option>
+                    <option value="5" th:selected="${list.isEnd==5}">已挂起</option>
+                </select>
+                    </span>
+                    <span th:case="1">
+                    <select name="isEnd"  class="form-control">
+                    <option value="0" th:selected="${list.isEnd==0}">未开始</option>
+                    <option value="2" th:selected="${list.isEnd==2}">进行中</option>
+                    <option value="3" th:selected="${list.isEnd==3}">已续期</option>
+                    <option value="4" th:selected="${list.isEnd==4}">已关闭</option>
+                    <option value="5" th:selected="${list.isEnd==5}">已挂起</option>
+                    </select>
+                 </span>
+                    <span th:case="2">
+                    <select name="isEnd"  class="form-control">
+                    <option value="0" th:selected="${list.isEnd==0}">未开始</option>
+                    <option value="1" th:selected="${list.isEnd==2}">已开始</option>
+                    <option value="3" th:selected="${list.isEnd==3}">已续期</option>
+                    <option value="4" th:selected="${list.isEnd==4}">已关闭</option>
+                    <option value="5" th:selected="${list.isEnd==5}">已挂起</option>
+                    </select>
+                 </span>
+                    <span th:case="3">
+                    <select name="isEnd"  class="form-control">
+                    <option value="0" th:selected="${list.isEnd==0}">未开始</option>
+                    <option value="2" th:selected="${list.isEnd==2}">进行中</option>
+                    <option value="1" th:selected="${list.isEnd==3}">已开始</option>
+                    <option value="4" th:selected="${list.isEnd==4}">已关闭</option>
+                    <option value="5" th:selected="${list.isEnd==5}">已挂起</option>
+                    </select>
+                 </span>
+                    <span th:case="4">
+                    <select name="isEnd"  class="form-control">
+                    <option value="0" th:selected="${list.isEnd==0}">未开始</option>
+                    <option value="2" th:selected="${list.isEnd==2}">进行中</option>
+                    <option value="3" th:selected="${list.isEnd==3}">已续期</option>
+                    <option value="1" th:selected="${list.isEnd==4}">已开始</option>
+                    <option value="5" th:selected="${list.isEnd==5}">已挂起</option>
+                    </select>
+                 </span>
+                    <span th:case="5">
+                    <select name="isEnd"  class="form-control">
+                    <option value="0" th:selected="${list.isEnd==0}">未开始</option>
+                    <option value="2" th:selected="${list.isEnd==2}">进行中</option>
+                    <option value="3" th:selected="${list.isEnd==3}">已续期</option>
+                    <option value="4" th:selected="${list.isEnd==4}">已关闭</option>
+                    <option value="1" th:selected="${list.isEnd==5}">已开始</option>
+                    </select>
+                 </span>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="inputTextarea102" class="col-sm-2 control-label">任务描述</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="inputTextarea102" rows="6" placeholder="任务描述" name="taskDescribe" th:value="${list.taskDescribe}"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputTextarea10" class="col-sm-2 control-label">备注</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="inputTextarea10" rows="6" placeholder="备注描述" name="remarks" th:value="${list.remarks}"></textarea>
+                </div>
+            </div>
+
+
+            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+            <input type="button" class="btn btn-primary" style="width: 120px" value="保存">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-default" style="width: 120px" onclick="window.history.go(-1)">返回</button>
+
+        </form>
+    </div>
+
+</div>
+<hr/>
+<br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+
+
+</body>
+</html>

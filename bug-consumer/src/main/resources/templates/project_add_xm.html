@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加项目</title>
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="/js/css/bootstrap.css">
+    <script src="/js/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../js/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../js/layuiadmin/style/admin.css" media="all">
+    <script type="text/javascript">
+        $(function () {
+            $("button[type='button']").click(function () {
+                //获取表单数据
+                var data=$("#saveFr").serialize();
+                //ajax请求
+                $.post("/project/saveProject",data,function (result) {
+                    if(result=='ok'){
+                        alert("请检查信息!");
+
+                    }else{
+                        alert("添加成功!");
+                        //大列表页面
+                        location.href="/project/queryAllProjectName";
+                    }
+                })
+
+            })
+        })
+
+
+    </script>
+
+</head>
+<body>
+
+
+<div align="center" style="width: 1000px;height:auto;margin-top: 30px;">
+    <br/>
+    <div align="left" style="margin-left: 60px;background-color: whitesmoke;width: 1700px">
+    <h3>添加项目</h3>
+    </div>
+    <br/>
+    <div align="center" style="margin-left: 90px">
+    <form  id="saveFr" class="form-horizontal" >
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">项目名称</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="项目名称" name="projectName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">项目编号</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="inputPassword3" placeholder="项目编号" name="projectCode">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword48" class="col-sm-2 control-label">开始日期</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="inputPassword48" placeholder="开始日期" name="stardate">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword18" class="col-sm-2 control-label">截止日期</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="inputPassword18" placeholder="结束日期" name="enddate">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword6" class="col-sm-2 control-label">组织名称</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="inputPassword6" placeholder="组织名称" name="teamName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword9" class="col-sm-2 control-label">项目类型</label>
+            <div class="col-sm-5">
+                <select class="form-control" id="inputPassword9" name="projecttype">
+                    <option value="0" selected="optioned">短期项目</option>
+                    <option value="1">长期项目</option>
+                    <option value="2">运维项目</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword89" class="col-sm-2 control-label">项目状态</label>
+            <div class="col-sm-5">
+                <select class="form-control" id="inputPassword89" name="isstate">
+                    <option value="0" selected="optioned">未开始</option>
+                    <option value="1">已开始</option>
+                    <option value="2">进行中</option>
+                    <option value="3">已续期</option>
+                    <option value="4">已关闭</option>
+                    <option value="5">已挂起</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword10" class="col-sm-2 control-label">项目描述</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" id="inputPassword10" rows="6" placeholder="项目描述" name="describe"></textarea>
+            </div>
+        </div>
+
+        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+        <button type="button" class="btn btn-primary" style="width: 120px" id="saveForm">保存</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-default" style="width: 120px" onclick="window.history.go(-1)">返回</button>
+
+    </form>
+    </div>
+
+</div>
+<hr/>
+<br/>
+
+
+</body>
+
+</html>

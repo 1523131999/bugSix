@@ -12,6 +12,19 @@
     <link rel="stylesheet" href="../js/layuiadmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="../js/layuiadmin/style/admin.css" media="all">
     <script src="/js/echarts.min.js"></script>
+    <!--<script type="text/javascript">-->
+        <!--$(function () {-->
+            <!--$("button[name='del']").click(function () {-->
+                <!--alert("1231213");-->
+                <!--var projectid=$(this).attr("projectid");-->
+                <!--alert(projectid);-->
+                <!--if (confirm("确定要删除?")){-->
+                    <!--location.href="queryAllProjectid?projectid="+projectid;-->
+
+                <!--}-->
+            <!--})-->
+        <!--})-->
+    <!--</script>-->
     <hr/>
 
 </head>
@@ -20,14 +33,15 @@
 
 <body>
     <div align="right" style="margin-top:15px">
-    <button class="btn btn-info">
+        <a href="/project/toAdd"><button class="btn btn-info">
         <span class="glyphicon glyphicon-plus" aria-hidden="true" id="addProject">添加项目</span>
     </button>
+        </a>
     </div>
 <hr/>
     <div  style="overflow-x: auto; overflow-y: auto; margin-top: 80px; margin-left: 50px">
         <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3"  style="width: 300px;height:100px">
     <table class="table table-striped table-bordered" align="left">
 
         <tr>
@@ -39,22 +53,26 @@
             <td th:text="*{projectName}" class="projectName" ></td>
             <input type="hidden" th:value="*{id}" name="id"/>
             <td ><a th:href="@{/project/toRenWuAll(assign=*{id})}" >
-                    --->>
+                     --->>
             </a></td>
+            <!--<td ><button name="del" th:id="${projectid.projectid}">-&ndash;&gt;></button>-->
+
+            </td>
 
         </tr>
     </table>
         </div>
             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                <div id="main" style="width: 600px;height:350px; margin-left: 0%"  class="col-md-3 col-md-offset-2" >
+                <div id="main" style="width: 600px;height:350px; margin-left: 15%"  class="col-md-3 col-md-offset-2" >
 
                 </div>
 
-            <div class="col-md-3 col-md-offset-3" style="margin-left: -20%">
+            <div class="col-md-3 col-md-offset-3" style="margin-left: -10%">
                 <span style="font-size: 33px;background-color:#e7c3c3;color: red;text-indent: 1em">所有项目</span>
                 <br/>
-                <div>
-                <span style="padding-left: 33px;font-size: 28px">20</span>
+                <br/>
+                <div align="left">
+                <!--<span style="padding-left: 33px;font-size: 28px" th:value="${}">&nbsp;&nbsp;</span>-->
                 </div>
             </span>
             </div>
@@ -104,7 +122,7 @@
 
     <hr/>
 
-    <div align="right"  style="overflow-x: auto; overflow-y: auto;">
+    <div align="right"  style="overflow-x: auto; overflow-y: auto;height: 350px">
         <h4 align="left">进行中的项目</h4>
         <table class="table table-striped table-bordered" >
             <tr>
@@ -117,8 +135,10 @@
             <tr th:each="project:${projectName}" th:Object="${project}">
                 <td th:text="*{projectName}" ></td>
                 <td th:text="*{projectCode}"></td>
-                <td th:text="*{#dates.format(stardate,'yyyy-MM-dd')}"></td>
-                <td th:text="*{#dates.format(enddate,'yyyy-MM-dd')}"></td>
+                <td th:text="*{stardate}"></td>
+                <td th:text="*{enddate}"></td>
+                <!--<td th:text="*{#dates.format(stardate,'yyyy-MM-dd')}"></td>-->
+                <!--<td th:text="*{#dates.format(enddate,'yyyy-MM-dd')}"></td>-->
                 <td th:if="*{isstate} eq 0">未开始</td>
                 <td th:if="*{isstate} eq 1">已开始</td>
                 <td th:if="*{isstate} eq 2">进行中</td>
