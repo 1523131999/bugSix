@@ -33,7 +33,9 @@ public class WyjProjectController {
 
     //项目名称展示
     @RequestMapping(value = "queryAllProjectName", method = RequestMethod.GET)
-    public String queryAllProjectName(String projectName, Model model) {
+    public String queryAllProjectName(String projectName,Integer id, Model model) {
+        Integer project=wyjProjectService.queryAllCount(id);
+        model.addAttribute("projectCount",project);
         model.addAttribute("projectName", wyjProjectService.queryAllProjectName(projectName));
         System.err.println("++++++++++++++++++++++++++++>>>>>>>>>>>>>>>>+====================" + projectName);
         return "project_list";
@@ -109,16 +111,6 @@ public class WyjProjectController {
     }
 
 
-    //项目总数
-    @RequestMapping(value = "queryCount",method = RequestMethod.GET)
-    public String queryAllCount(Integer id,Model model){
-
-        System.out.println("+++++++++++++++++++++++++?????????????????????????????????+++++++++++++++"+id);
-        Integer project=wyjProjectService.queryAllCount(id);
-        model.addAttribute("project",project);
-        System.out.println("+++++++++++++++++++++++++?????????????????????????????????+++++++++++++++"+project);
-        return "project_list";
-    }
 
 
 
