@@ -18,9 +18,10 @@ public class Task implements Serializable {
     private Date Estimateddate;
     private Date enddate;
     private Integer priority;
-    private User assign;
+    private Integer assign;
     private User createUser;
     private Integer isEnd;
     private String taskName;
-
+    private String taskDescribe;
+    private String remarks;
 }
