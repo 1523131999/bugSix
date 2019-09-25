@@ -22,7 +22,6 @@ public class UserServiceImpl implements UserService {
 
     public User login(User user) {
         return userMapper.login(user);
-
     }
 
 
@@ -61,5 +60,19 @@ public class UserServiceImpl implements UserService {
     public Integer delete(Integer id) {
         return userMapper.delete(id);
     }
+
+    @Override
+    public WyjPageUtils<User> queryAllBy(User user, Integer pageNum, Integer pageNo) {
+        PageHelper.startPage(pageNo,pageNum);
+        List<User> list=userMapper.queryAllBy(user);
+        PageInfo<User> info=new PageInfo<>(list);
+        WyjPageUtils<User> util=new WyjPageUtils<>();
+        util.setList(info.getList());
+        util.setPageNo(info.getPageNum());
+        util.setPageSize(info.getPageSize());
+        util.setTotalPageCount(info.getPages());
+        return util;
+    }
+
 
 }

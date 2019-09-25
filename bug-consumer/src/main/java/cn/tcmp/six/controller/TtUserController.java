@@ -11,11 +11,10 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Calendar;
 @Controller
 @RequestMapping("user")
@@ -41,23 +40,27 @@ public class TtUserController {
     //用户登录
     @RequestMapping(value = "login",method = RequestMethod.POST,
             produces = {"application/json;charset=UTF-8"})
-    public String login(HttpServletRequest request, User user) {
+    @ResponseBody
+    public String login(HttpServletRequest request, User user, HttpSession session) {
         TokenDto tokenDto=new TokenDto();
         DataDto data=null;
-
+        System.out.println(user);
         //1. 用户名密码验证
         User loginUser = userService.login(user);
+        System.out.println(loginUser);
+        System.out.println("验证密码完成");
         if (null == loginUser) {
             //用户名密码错误
             tokenDto.setErrorcode(Common.CODE_02);
             return JSON.toJSONString(tokenDto);
         }
-
+        session.setAttribute("user",loginUser);
+        System.out.println(loginUser);
         //2. 生成token
         String token=tokenService.
                 createToken(request.getHeader("User-Agent"),loginUser);
         //3. 保存token
-        tokenService.saveToken(token,loginUser);
+        //tokenService.saveToken(token,loginUser);
 
         //4.将token信息返回给用户(TokenDto ->json)
         data=new DataDto();
@@ -89,7 +92,7 @@ public class TtUserController {
             pageNo=1;
         }
         if (pageNum == null) {
-            pageNum=3;
+            pageNum=5;
         }
 
         model.addAttribute("util",userService.detailByUserid(id,pageNum,pageNo));
@@ -103,7 +106,7 @@ public class TtUserController {
             pageNo=1;
         }
         if (pageNum == null) {
-            pageNum=3;
+            pageNum=6;
         }
 
         model.addAttribute("util",userService.queryAll(user,pageNum,pageNo));
@@ -113,14 +116,33 @@ public class TtUserController {
 
     @RequestMapping("add")
     public String add(User user,Model model){
+        System.out.println(user);
         Integer add = userService.add(user);
+        return "redirect:queryAll";
+    }
+    @RequestMapping("toAdd")
+    public String toAdd(){
         return "add_user";
     }
+
 
     @RequestMapping("detele")
     public String detele(Integer id,Model model){
         Integer add = userService.delete(id);
         return "list_user";
     }
+    @RequestMapping("queryAllBy")
+    public String queryAllBy(Integer pageNum, Integer pageNo, User user,Model model){
+        if (pageNo == null) {
+            pageNo=1;
+        }
+        if (pageNum == null) {
+            pageNum=6;
+        }
+        model.addAttribute("util",userService.queryAllBy(user,pageNum,pageNo));
+        model.addAttribute("user",user);
+        return "list_user";
+    }
+
 }
 

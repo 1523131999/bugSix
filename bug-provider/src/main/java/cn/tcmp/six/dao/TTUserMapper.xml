@@ -5,7 +5,7 @@
 <mapper namespace="cn.tcmp.six.dao.TTUserMapper">
     <select id="login" resultType="User" parameterType="User">
         SELECT * FROM bugdb.user
-        WHERE usercode=#{usercode}
+        WHERE usercode=#{username}
         AND password=#{password}
     </select>
     <select id="queryAll" resultType="User" parameterType="User">
@@ -24,7 +24,21 @@
         insert into user values(default,#{usercode},#{password},#{username},#{userroels})
     </insert>
 
-
+    <select id="queryAllBy" resultType="User" parameterType="User">
+       SELECT * FROM USER
+       <where>
+           1 = 1
+           <if test="usercode != null and usercode != ''">
+               and usercode LIKE CONCAT ('%',#{usercode},'%')
+           </if>
+           <if test="username != null and username != ''">
+               and username LIKE CONCAT ('%',#{username},'%')
+           </if>
+           <if test="userroels != null and userroels != ''">
+               and userroels LIKE CONCAT ('%',#{userroels},'%')
+           </if>
+       </where>
+    </select>
 
 
 </mapper>

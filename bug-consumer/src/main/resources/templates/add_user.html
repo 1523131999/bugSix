@@ -3,8 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>新增用户</title>
+    <script src="../js/js/bootstrap.js"></script>
 </head>
 <body>
+<form action="/user/add">
+
+    用户账号： <input type="text" name="usercode"><br>
+    密码： <input type="text" name="password"><br>
+    用户名： <input type="text" name="username"><br>
+    用户角色： <select name="userroels">
+                    <option value="1">管理员</option>
+                    <option value="2">项目经理</option>
+                    <option value="3">开发人员</option>
+                    <option value="4">测试人员</option>
+              </select>
+    <br>
+
+    <input type="reset" value="清空" >
+    <input type="submit" value="新增">
+</form>
+
 
 </body>
 </html>

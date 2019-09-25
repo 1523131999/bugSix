@@ -18,5 +18,8 @@ public interface TTUserMapper {
         Integer add(User user);
     //删除用户
         Integer delete(Integer id);
+        //高级查询
+        List<User> queryAllBy(User user);
+
 
 }

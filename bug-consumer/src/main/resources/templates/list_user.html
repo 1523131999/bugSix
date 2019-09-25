@@ -9,7 +9,17 @@
     <link rel="stylesheet" href="../js/css/bootstrap.css">
 </head>
 <body>
-<form action="/user/queryAll">
+<form action="/user/queryAllBy" align="center">
+
+        用户账号： <input type="text" name="usercode">
+        用户名： <input type="text" name="username">
+        用户角色： <select name="userroels">
+                        <option value="1">管理员</option>
+                        <option value="2">项目经理</option>
+                        <option value="3">开发人员</option>
+                        <option value="4">测试人员</option>
+                   </select>
+    <br>
     <table class="table">
         <tr>
             <td>用户Id</td>
@@ -21,8 +31,18 @@
             <td th:text="${item.userid}"></td>
             <td th:text="${item.usercode}"></td>
             <td th:text="${item.username}"></td>
-            <td th:text="${item.userroels}"></td>
+            <td th:if="${item.userroels==1}" th:text="管理员"></td>
+            <td th:if="${item.userroels==2}" th:text="项目经理"></td>
+            <td th:if="${item.userroels==3}" th:text="开发人员"></td>
+            <td th:if="${item.userroels==4}" th:text="测试人员"></td>
         </tr>
+
+        <a href="/user/toAdd">
+            <input type="button" value="新增">
+        </a>
+
+        <input type="submit" value="查询">
+
 
     </table>
     <button name="jkl" th:no="1">首页</button>
