@@ -5,7 +5,7 @@
 <mapper namespace="cn.tcmp.six.dao.TTUserMapper">
     <select id="login" resultType="User" parameterType="User">
         SELECT * FROM bugdb.user
-        WHERE usercode=#{username}
+        WHERE usercode=#{usercode}
         AND password=#{password}
     </select>
     <select id="queryAll" resultType="User" parameterType="User">

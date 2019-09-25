@@ -11,16 +11,18 @@
 <body>
 <form action="/user/queryAllBy" align="center">
 
+    <table class="table table-striped table-bordered">
+
         用户账号： <input type="text" name="usercode">
         用户名： <input type="text" name="username">
         用户角色： <select name="userroels">
-                        <option value="1">管理员</option>
-                        <option value="2">项目经理</option>
-                        <option value="3">开发人员</option>
-                        <option value="4">测试人员</option>
-                   </select>
-    <br>
-    <table class="table">
+        <option value="1">管理员</option>
+        <option value="2">项目经理</option>
+        <option value="3">开发人员</option>
+        <option value="4">测试人员</option>
+    </select>
+        <br>
+
         <tr>
             <td>用户Id</td>
             <td>用户账号</td>
@@ -45,12 +47,35 @@
 
 
     </table>
-    <button name="jkl" th:no="1">首页</button>
-    <button name="jkl" th:no="${util.pageNo-1}">上一页</button>
-    <button name="jkl" th:no="${util.pageNo+1}">下一页</button>
-    <button name="jkl" th:no="${util.totalPageCount}">尾页</button>
-    <input type="hidden" id="fff" th:value="${util.totalPageCount}">
-    <input type="hidden" id="userid" th:value="${userid}">
+    <div align="center">
+        <button name="jkl" th:no="1" class="btn btn-primary">首页</button>
+        <button name="jkl" th:no="${util.pageNo-1}" class="btn btn-primary">上一页</button>
+        <button name="jkl" th:no="${util.pageNo+1}" class="btn btn-primary">下一页</button>
+        <button name="jkl" th:no="${util.totalPageCount}" class="btn btn-primary">尾页</button>
+        <input type="hidden" id="fff" th:value="${util.totalPageCount}">
+        <input type="hidden" id="userid" th:value="${userid}">
+    </div>
+    <script type="text/javascript">
+
+        $(function () {
+            $("button[name='jkl']").click(function () {
+                var pages = $("#fff").val();
+                var pageno = $(this).attr("no");
+                pages=parseInt(pages);
+                pageno=parseInt(pageno);
+                if (pageno <= 1) {
+                    pageno = 1;
+                }
+                if (pages <= pageno) {
+                    pageno=pages;
+                }
+                var id=$("#userid").val();
+                id=parseInt(id);
+                location.href = 'queryAllBy?pageNo='+pageno+'&id='+id;
+            })
+
+        })
+    </script>
 </form>
 </body>
 </html>

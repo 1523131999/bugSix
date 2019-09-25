@@ -15,7 +15,7 @@
         <div class="message">Bug系统登录</div>
         <div id="darkbannerwrap"></div>   
         <form method="post" id="loginForm" class="layui-form" >
-            <input name="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
+            <input name="usercode" placeholder="用户账号"  type="text" lay-verify="required" class="layui-input" >
             <hr class="hr15">
             <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
             <hr class="hr15">
@@ -44,9 +44,7 @@
                 $("input[type='submit']").click(function () {
                     var data=$("#loginForm").serialize();
                     $.post('/user/login',data,function (result) {
-                        alert(result);
                         if(result.errorcode =='0000'){
-                            alert("登录成功");
                             //获取到服务器端给客户端的token
                             var token=result.data.token;
                             //alert(token);
