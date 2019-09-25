@@ -5,7 +5,7 @@
 <mapper namespace="cn.tcmp.six.dao.YmyModelMapper">
     <select id="detailByUserid" resultMap="map1" parameterType="Integer">
 
-      SELECT * FROM  Module,USER u,USER u2 WHERE cassign=#{id} AND Module.cassign=u.userid AND Module.Kassign=u2.userid
+      SELECT * FROM  Module,USER u,USER u2 WHERE cassign=#{id} AND Module.cassign=u.userid AND Module.Kassign=u2.userid and Module.isagreen=0
   </select>
     <resultMap id="map1" type="Module" autoMapping="true">
         <id property="id" column="id"></id>
@@ -13,6 +13,23 @@
         <!--<collection property="Kassign" resultMap="map2"></collection>-->
     </resultMap>
     <resultMap id="map2" type="User" autoMapping="true">
-        <id column="userid" property="usereid"></id>
+        <id column="userid" property="userid"></id>
     </resultMap>
+    <select id="detailByModulId" resultMap="map3" parameterType="Integer">
+      select * from task,user,Module where task.userid=#{id} and task.isEnd=1 and task.userid=user.userid and task.moduleid=Module.id
+    </select>
+    <resultMap id="map3" type="task" autoMapping="true">
+        <id property="id" column="id"></id>
+        <collection property="assign" resultMap="map2"></collection>
+        <collection property="moduleid" resultMap="map4"></collection>
+    </resultMap>
+    <resultMap id="map4" type="Module" autoMapping="true">
+        <id property="id" column="id"></id>
+
+    </resultMap>
+    <insert id="addBug" parameterType="Bug">
+        insert into bug values(null,#{taskid},2,#{priority},#{date},#{describe},#{isreproduce},0)
+    </insert>
+
+
 </mapper>
